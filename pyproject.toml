@@ -12,6 +12,7 @@ fastapi = {extras = ["all"], version = "^0.111.0"}
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.1"
+black = "^24.4.2"
 
 [build-system]
 requires = ["poetry-core"]

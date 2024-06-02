@@ -16,4 +16,4 @@ def add_user(user: CreateUser):
 
 @router.post("/{user_id}")
 def change_name_user(user_id: int, new_name: Annotated[str, MinLen(2), MaxLen(20)]):
-    return crud.change_name(user_id=user_id, new_name=new_name)
+    return crud.upgrade_name(user_id=user_id, new_name=new_name)

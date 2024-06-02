@@ -8,5 +8,5 @@ def create_user(user_in: CreateUser) -> dict:
     return {"success": True, "user": user}
 
 
-def change_name(user_id: int, new_name: str):
+def upgrade_name(user_id: int, new_name: str):
     return f"Имя пользователя с айди {user_id} изменено на {new_name}"
