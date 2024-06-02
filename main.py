@@ -8,6 +8,8 @@ from items_views import router as items_router
 from users.views import router as users_router
 from core.models import Base
 from core import db_helper, DatabaseHelper
+from core.config import settings
+from api_v1 import router as api_v1_router
 
 
 @asynccontextmanager
@@ -23,6 +25,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="Suren App", lifespan=lifespan)
 app.include_router(items_router, tags=["Items"])
 app.include_router(users_router, tags=["Users"])
+app.include_router(api_v1_router, tags=["api_v1"], prefix=settings.api_v1_prefix)
 
 
 @app.get("/")
