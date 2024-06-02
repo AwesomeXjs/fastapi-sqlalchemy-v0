@@ -5,13 +5,11 @@ from fastapi import FastAPI, Path
 from pydantic import EmailStr, BaseModel
 
 from items_views import router as items_router
+from users.views import router as users_router
 
 app = FastAPI(title="Suren App")
-app.include_router(items_router)
-
-
-class CreateUser(BaseModel):
-    email: EmailStr
+app.include_router(items_router, tags=["Items"])
+app.include_router(users_router, tags=["Users"])
 
 
 @app.get("/")
@@ -23,16 +21,6 @@ def get_home():
 def get_hello(name: str):
     name = name.strip().title()
     return f"hello from {name}"
-
-
-@app.post("/users/one")
-def add_user(user: CreateUser):
-    return {"message": "success", "email": user.email}
-
-
-@app.post("/users/{user_id}")
-def change_name_user(user_id: int, new_name: str):
-    return f"Имя пользователя с айди {user_id} изменено на {new_name}"
 
 
 @app.get("/teachers")
