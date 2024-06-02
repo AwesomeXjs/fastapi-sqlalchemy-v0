@@ -25,7 +25,7 @@ def get_hello(name: str):
     return f"hello from {name}"
 
 
-@app.post("/users/")
+@app.post("/users/one")
 def add_user(user: CreateUser):
     return {"message": "success", "email": user.email}
 
