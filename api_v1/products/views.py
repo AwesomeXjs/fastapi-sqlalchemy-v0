@@ -11,7 +11,7 @@ router = APIRouter(prefix="/products")
 
 @router.get("/", response_model=list[Product])
 async def get_products(
-    session: AsyncSession = Depends(db_helper.scoped_session_dependency),
+    session: AsyncSession = Depends(db_helper.session_dependency),
 ):
     return await crud.get_products(session=session)
 
@@ -30,16 +30,17 @@ async def get_products(
 )
 async def create_product(
     product_in: ProductCreate,
-    session: AsyncSession = Depends(db_helper.scoped_session_dependency),
+    session: AsyncSession = Depends(db_helper.session_dependency),
 ):
     return await crud.create_product(session=session, product_create=product_in)
 
 
+# put - обновляет целиком, patch - обновляет некоторые поля
 @router.put("/{products_id}/")
 async def update_product(
     product_update: ProductUpdate,
     product: Product = Depends(product_by_id),
-    session: AsyncSession = Depends(db_helper.scoped_session_dependency),
+    session: AsyncSession = Depends(db_helper.session_dependency),
 ):
     return await crud.update_products(
         session=session, product=product, product_update=product_update
@@ -50,7 +51,7 @@ async def update_product(
 async def update_product_partial(
     product_update: ProductUpdatePartial,
     product: Product = Depends(product_by_id),
-    session: AsyncSession = Depends(db_helper.scoped_session_dependency),
+    session: AsyncSession = Depends(db_helper.session_dependency),
 ):
     return await crud.update_products(
         session=session, product=product, product_update=product_update, partial=True
@@ -60,6 +61,6 @@ async def update_product_partial(
 @router.delete("/{products_id}/", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_product(
     product: Product = Depends(product_by_id),
-    session: AsyncSession = Depends(db_helper.scoped_session_dependency),
+    session: AsyncSession = Depends(db_helper.session_dependency),
 ) -> None:
     await crud.delete_product(session=session, product=product)

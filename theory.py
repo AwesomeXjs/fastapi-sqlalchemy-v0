@@ -13,6 +13,7 @@
 # CRUD - Create Read Update Delete
 
 # работа с алхимией:
+# инициализация fastapi =>
 # 1. settings
 # 2. db_helper для всех подключений
 # 3. модели

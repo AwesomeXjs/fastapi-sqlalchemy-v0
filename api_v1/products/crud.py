@@ -29,7 +29,6 @@ async def create_product(
     return product
 
 
-# put - обновляет целиком, patch - обновляет некоторые поля
 async def update_products(
     session: AsyncSession,
     product: Product,
