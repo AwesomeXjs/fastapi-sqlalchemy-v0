@@ -12,17 +12,17 @@ from core.config import settings
 from api_v1 import router as api_v1_router
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # до yield - настройка приложения
-    # создание таблиц на основе наших моделей при запуске приложения
-    async with db_helper.engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-    yield
-    # после yield - уборка после отрабоки приложения
+# @asynccontextmanager
+# async def lifespan(app: FastAPI):
+#     # до yield - настройка приложения
+#     # создание таблиц на основе наших моделей при запуске приложения
+#     async with db_helper.engine.begin() as conn:
+#         await conn.run_sync(Base.metadata.create_all)
+#     yield
+#     # после yield - уборка после отрабоки приложения
 
 
-app = FastAPI(title="Suren App", lifespan=lifespan)
+app = FastAPI(title="Suren App")
 app.include_router(items_router, tags=["Items"])
 app.include_router(users_router, tags=["Users"])
 app.include_router(api_v1_router, tags=["api_v1"], prefix=settings.api_v1_prefix)

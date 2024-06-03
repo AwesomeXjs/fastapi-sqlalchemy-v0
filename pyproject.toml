@@ -11,6 +11,7 @@ python = "^3.12"
 fastapi = {extras = ["all"], version = "^0.111.0"}
 sqlalchemy = {extras = ["asyncio"], version = "^2.0.30"}
 aiosqlite = "^0.20.0"
+alembic = "^1.13.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.1"
