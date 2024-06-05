@@ -148,49 +148,57 @@ async def get_profiles_with_user_and_posts_with_filter_by_user(
         print(profile.user.posts, "\n")
 
 
+async def main_relations(session: AsyncSession):
+    # СОЗДАНИЕ ПОЛЬЗОВАТЕЛЕЙ:
+    # await create_user(session=session, username="john")
+    # await create_user(session=session, username="nick")
+    # await create_user(session=session, username="alice")
+
+    # ИЩЕМ ПОЛЬЗОВАТЕЛЕЙ ПО ЮЗЕРНЕЙМУ
+    # user_nick = await get_user_by_username(session=session, username="nick")
+    # user_john = await get_user_by_username(session=session, username="john")
+    # user_alice = await get_user_by_username(session=session, username="alice")
+
+    # СОЗДАЕМ ПРОФИЛИ ДЛЯ ПОЛЬЗОВАТЕЛЕЙ
+    # await create_user_profile(
+    #     session=session, user_id=user_john.id, first_name="John"
+    # )
+    # await create_user_profile(
+    #     session=session, user_id=user_nick.id, first_name="nick", last_name="White"
+    # )
+
+    # показываем всех пользователей с их профилями
+    # await show_users_with_profiles(session=session)
+
+    # создаем посты
+    # await create_post(session, user_john.id, "Первый пост", "Второй пост")
+    # await create_post(session, user_nick.id, "Fast API", "FAST API MORE")
+
+    # запрашиваем пользователей с их постами:
+    # await get_users_with_posts(session=session)
+
+    # запрашиваем посты и их авторов
+    # await get_posts_with_author(session=session)
+
+    # запрашиваем юзеров с постами и профилями
+    # await get_users_with_posts_and_profiles(session=session)
+
+    # запрашиваем профили с их юзерами и их постами
+    # await get_profiles_with_user_and_posts(session=session)
+
+    await get_profiles_with_user_and_posts_with_filter_by_user(
+        session=session, username="john"
+    )
+
+
+async def demo_m2m():
+    pass
+
+
 async def main():
     async with db_helper.section_factory() as session:
-
-        # СОЗДАНИЕ ПОЛЬЗОВАТЕЛЕЙ:
-        # await create_user(session=session, username="john")
-        # await create_user(session=session, username="nick")
-        # await create_user(session=session, username="alice")
-
-        # ИЩЕМ ПОЛЬЗОВАТЕЛЕЙ ПО ЮЗЕРНЕЙМУ
-        # user_nick = await get_user_by_username(session=session, username="nick")
-        # user_john = await get_user_by_username(session=session, username="john")
-        # user_alice = await get_user_by_username(session=session, username="alice")
-
-        # СОЗДАЕМ ПРОФИЛИ ДЛЯ ПОЛЬЗОВАТЕЛЕЙ
-        # await create_user_profile(
-        #     session=session, user_id=user_john.id, first_name="John"
-        # )
-        # await create_user_profile(
-        #     session=session, user_id=user_nick.id, first_name="nick", last_name="White"
-        # )
-
-        # показываем всех пользователей с их профилями
-        # await show_users_with_profiles(session=session)
-
-        # создаем посты
-        # await create_post(session, user_john.id, "Первый пост", "Второй пост")
-        # await create_post(session, user_nick.id, "Fast API", "FAST API MORE")
-
-        # запрашиваем пользователей с их постами:
-        # await get_users_with_posts(session=session)
-
-        # запрашиваем посты и их авторов
-        # await get_posts_with_author(session=session)
-
-        # запрашиваем юзеров с постами и профилями
-        # await get_users_with_posts_and_profiles(session=session)
-
-        # запрашиваем профили с их юзерами и их постами
-        # await get_profiles_with_user_and_posts(session=session)
-
-        await get_profiles_with_user_and_posts_with_filter_by_user(
-            session=session, username="john"
-        )
+        # await main_relations(session)
+        await demo_m2m()
 
 
 if __name__ == "__main__":

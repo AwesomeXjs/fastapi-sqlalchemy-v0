@@ -12,7 +12,9 @@ if TYPE_CHECKING:
 
 class User(Base):
     username: Mapped[str] = mapped_column(String(25), unique=True)
-    posts: Mapped[list["Post"]] = relationship(back_populates="user")
+    posts: Mapped[list["Post"]] = relationship(
+        back_populates="user"
+    )  # back_populates указывает откуда можно ссылаться на посты
     profile: Mapped["Profile"] = relationship(back_populates="user")
 
     def __str__(self):
