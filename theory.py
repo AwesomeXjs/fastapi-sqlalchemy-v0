@@ -20,6 +20,15 @@
 # 4. alembic создание миграций и создание первых таблиц
 # 5. создание schemas > crud > views
 
+# alembic запросы
+# alembic init alembic (для асинхронки alembic init -t async alembic)
+# alembic revision --autogenerate -m "create revision"
+# alembic upgrade head (к последней версии) (до определенной версии указать хэш ревизии вместо head)
+# alembic downgrade -1 (откатить последнюю версию) (или определенную по хэшу)
+# alembic history - полказывает историю миграций
+# alembic current - показывает текущую миграцию
+
+
 # Виды запросов:
 
 # default:

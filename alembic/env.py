@@ -32,7 +32,7 @@ target_metadata = Base.metadata
 
 config = context.config
 
-config.set_section_option(config.config_ini_section, "sqlalchemy.url", settings.db_url)
+config.set_section_option(config.config_ini_section, "sqlalchemy.url", settings.db.url)
 
 
 def run_migrations_offline() -> None:
