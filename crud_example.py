@@ -261,11 +261,17 @@ async def create_orders_and_products(session: AsyncSession):
 
     order_one.products.append(mouse)
     order_one.products.append(keyboard)
-    # order_promo.products.append(keyboard)
-    # order_promo.products.append(display)
+    order_promo.products.append(keyboard)
+    order_promo.products.append(display)
 
     order_promo.products = [keyboard, display]
-
+    mouse_two = await create_product(
+        session,
+        "Mouse_Two",
+        "Great gaming mouse_two",
+        price=2534,
+    )
+    order_one.products.append(mouse_two)
     await session.commit()
 
 
@@ -344,10 +350,10 @@ async def create_gift_product_for_existing_orders(session: AsyncSession):
 
 
 async def demo_m2m(session: AsyncSession):
-    await create_orders_and_products(session)
+    # await create_orders_and_products(session)
     await demo_get_orders_with_products_through_secondary(session)
     await demo_get_orders_with_products_with_assoc(session)
-    await create_gift_product_for_existing_orders(session)
+    # await create_gift_product_for_existing_orders(session)
 
 
 async def main():

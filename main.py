@@ -50,7 +50,11 @@ class NumberForSum(BaseModel):
     second_num: int
 
 
-@app.post("/sum")
+class ResponseNum(NumberForSum):
+    summary: int
+
+
+@app.post("/sum", response_model=ResponseNum)
 def summary(numbers: NumberForSum):
     return {
         "first_num": numbers.first_num,
